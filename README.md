@@ -18,14 +18,14 @@ $ sudo ./creaPW.sh miweb dbpass  (dbpass es tu contraseña de bitnami)
 ### 3.- Desde Cyberduck:  
 
 * Nueva conexión-> conexión segura sftp -> resto de datos para conectar.  
-* Ir a home>bitnami>apps>miweb>htdocs>site  
-* Borrar la _site_ que haya para sustituirlo por el nuestro (backup que acabamos de descargar con el módulo _site profile_  
+* Ir a home>bitnami>apps>miweb>htdocs>  
+* Borrar la _site_ que haya para sustituirlo por el nuestro (backup que acabamos de descargar con el módulo _site profile_)  
 * Para ello, arrastrar nuestro site.zip al servidor a la carpeta _htdocs_  
 * Descomprimirlo  
 * Borrar la copia zip de nuestro site  
 * Renombrarlo a site  
 
-### 4.- Ir al Navegador y poner mavira.bitnamiapp.com/miweb  
+### 4.- Ir al Navegador y poner nano.bitnamiapp.com/miweb  
 
 * Aparece el mensaje _GET STARTED_  
 * Configurarlo con los datos que nos da Putty después de crear "miweb"  
@@ -51,7 +51,7 @@ $ sudo ./creaPW.sh miweb dbpass  (dbpass es tu contraseña de bitnami)
 ```  
 
 * Volver al navegador y poner url  
-  mavira.bitnamiapp.com/miweb/admin  
+  nano.bitnamiapp.com/miweb/admin  
 y comprobar que ya no da error.  
 
 ### 4.- Resolver conflictos  
@@ -61,11 +61,20 @@ y comprobar que ya no da error.
   - Pages2JSON  
 
 * Configurar el archivo _sftp-config.json_  
-  - host: mavira.bitnami.com  
+  - host: nano.bitnami.com  
   - file_permissions: 644  
   - dir_permissions: 755  
 
 * Revisar archivo _factories.js_(situado en scripts)  
-  - cambiar la url: "http: //mavira.bitnamiapp.com/miweb"  
+  - cambiar la url: "http: //nano.bitnamiapp.com/miweb"  
+  
+### 5.- Sublime Text  
+
+* Crear en escritorio carpeta vacia con el nombre de la nueva web.  
+* Arrastrarla a Sublime Text  
+* Sftp-> map to remote  
+* Configurar sftp-config.json  
+
+  
 
 [MAS INFO](http://moodle.indinet.es/mod/page/view.php?id=121)  
