@@ -66,11 +66,49 @@ y comprobar que ya no da error.
   - dir_permissions: 755  
 
 * Revisar archivo _factories.js_(situado en scripts)  
-  - cambiar la url: "http: //nano.bitnamiapp.com/miweb"  
-    ```.factory('pw', function($http) {
+  - cambiar la url: "http://nano.bitnamiapp.com/miweb"  
 
-	var webService = "http://mariel.bitnamiapp.com/tensfam/web-service/";```  
-	
+    ```
+angular.module('factories', [])
+
+
+.factory('pw', function($http) {
+
+	var webService = "http://nano.bitnamiapp.com/miweb/web-service/";
+
+	return {
+
+		busca: function(query){ 
+			return $http.post( webService + "busca/", {'query':query} ).then(function(response){
+				return response.data;
+			});
+		}
+
+	}
+})
+  ```  
+
+Por esta otra:  
+
+```
+angular.module('factories', [])
+
+
+.factory('pw', function($http, $location) {
+
+	var webService = "http://"+$location.$$host+"/web-service/";
+
+	return {
+
+		busca: function(query){ 
+			return $http.post( webService + "busca/", {'query':query} ).then(function(response){
+				return response.data;
+			});
+		},
+
+	}
+})
+```
   
 ### 5.- Sublime Text  
 
