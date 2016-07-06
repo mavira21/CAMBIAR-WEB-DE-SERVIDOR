@@ -67,6 +67,10 @@ y comprobar que ya no da error.
 
 * Revisar archivo _factories.js_(situado en scripts)  
   - cambiar la url: "http: //nano.bitnamiapp.com/miweb"  
+    ```.factory('pw', function($http) {
+
+	var webService = "http://mariel.bitnamiapp.com/tensfam/web-service/";```  
+	
   
 ### 5.- Sublime Text  
 
