@@ -1,20 +1,71 @@
-###1.- Crear backup de nuestra web en Processwire con el módulo Export Site Profile.  
-Le llamaremos **site**  
+### 1.- Hacer backup de nuestra web  
 
-![](http://grabilla.com/06505-a0d1007f-4a56-4ab4-9b2b-d5d488938a91.png)  
+* En el Administrador de ProcessWire instalar el módulo [ProcessExportProfile](http://modules.processwire.com/modules/process-export-profile/)  
 
-###2.- Descargar la última versión (**MASTER**) de PW desde la [página oficial](https://processwire.com/download/)  
+* Ir a  
+_CONFIGURACIÓN_ -> Export Site Profile -> _NAME_(site) -> _START EXPORT_ -> _CONTINUE_-> _DOWNLOAD_-> _REMOVE_  
 
-![](http://grabilla.com/06505-1606b8f9-6605-4428-b96a-07cf7110e371.png)  
+Ir a descargas y guardar nuestro backup.  
 
-Descomprimirla en nuestro escritorio.  
+### 2.- Desde Putty:  
 
-###3.- Copiamos nuestro site a la carpeta donde está descomprimido el Master PW.  
-Eliminamos los otros site que contiene la carpeta Master PW para evitar conflictos.  
+* Desde home/bitnami poner:  
 
-###4.- Lo volvemos a comprimir y lo subimos al Servidor.  
+```
+$ sudo ./creaPW.sh miweb dbpass  (dbpass es tu contraseña de bitnami)
+```  
 
-Para ello:  
+### 3.- Desde Cyberduck:  
 
-- Instalar la copia de master.zip  
-$ sudo ./creaPW.sh miweb dbpass https://aws-eu...../master.zip  
+* Nueva conexión-> conexión segura sftp -> resto de datos para conectar.  
+* Ir a home>bitnami>apps>miweb>htdocs>site  
+* Borrar la _site_ que haya para sustituirlo por el nuestro (backup que acabamos de descargar con el módulo _site profile_  
+* Para ello, arrastrar nuestro site.zip al servidor a la carpeta _htdocs_  
+* Descomprimirlo  
+* Borrar la copia zip de nuestro site  
+* Renombrarlo a site  
+
+### 4.- Ir al Navegador y poner mavira.bitnamiapp.com/miweb  
+
+* Aparece el mensaje _GET STARTED_  
+* Configurarlo con los datos que nos da Putty después de crear "miweb"  
+* **DB Name** miweb  
+  **DB User** miweb  
+  **DB Pass** la que nos da putty  
+  **Default time** EU-Madrid  
+  **DB Directories** 755  
+  **DB Files** 644  
+  **mavira.bitnamiapp.com**  
+* _CONTINUE_  
+  **Admin Login Url** Admin  
+  **User** mavira  
+  **Pass** exclusive  
+  **Email** gmail  
+* _CONTINUE_  
+  Dará un error:  _remove.php_  
+  Ir a Putty (home->ls->cd..->ls)  
+  Desde $apps/miweb/htdocs poner  
+
+```
+  sudo rm install.php
+```  
+
+* Volver al navegador y poner url  
+  mavira.bitnamiapp.com/miweb/admin  
+y comprobar que ya no da error.  
+
+### 4.- Resolver conflictos  
+
+* Instalar los módulos que no se hayan importado con el site  
+  - FieldtypeCropImage  
+  - Pages2JSON  
+
+* Configurar el archivo _sftp-config.json_  
+  - host: mavira.bitnami.com  
+  - file_permissions: 644  
+  - dir_permissions: 755  
+
+* Revisar archivo _factories.js_(situado en scripts)  
+  - cambiar la url: "http: //mavira.bitnamiapp.com/miweb"  
+
+[MAS INFO](http://moodle.indinet.es/mod/page/view.php?id=121)  
