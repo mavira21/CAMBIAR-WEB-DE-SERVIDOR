@@ -66,9 +66,9 @@ y comprobar que ya no da error.
   - dir_permissions: 755  
 
 * Revisar archivo _factories.js_(situado en scripts)  
-  - cambiar la url: "http://nano.bitnamiapp.com/miweb"  
+  Cambiar la url: "http://nano.bitnamiapp.com/miweb/web-service/"  
 
-    ```
+```
 angular.module('factories', [])
 
 
@@ -86,7 +86,7 @@ angular.module('factories', [])
 
 	}
 })
-  ```  
+```  
 
 Por esta otra:  
 
